@@ -6,8 +6,6 @@ import org.anyframe.cloud.application.CommonService;
 import org.anyframe.cloud.application.ManagementService;
 import org.anyframe.cloud.application.exception.ContentsNotExistException;
 import org.anyframe.cloud.domain.RegisteredUser;
-import org.anyframe.cloud.infrastructure.persistence.mongo.RegisteredUserMongoDbRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -50,5 +48,29 @@ public class DefaultManagementService extends CommonService implements Managemen
 		}
 		
 		return registeredUserList;
+	}
+
+	@Override
+	public void modifyUser(RegisteredUser registeredUser) {
+		
+		RegisteredUser before = registeredUserRepository.findByEmailAddress(registeredUser.getEmailAddress());
+		registeredUser.setId(before.getId());
+		registeredUser.setPassword(before.getPassword());
+		
+		registeredUserRepository.save(registeredUser);
+	}
+
+	@Override
+	public void changePassword(RegisteredUser registeredUser) {
+		
+		RegisteredUser before = registeredUserRepository.findByEmailAddress(registeredUser.getEmailAddress());
+		registeredUser.setId(before.getId());
+		registeredUser.setFirstName(before.getFirstName());
+		registeredUser.setLastName(before.getLastName());
+		registeredUser.setRole(before.getRole());
+		registeredUser.setCompany(before.getCompany());
+		
+		registeredUserRepository.save(registeredUser);
+		
 	}
 }

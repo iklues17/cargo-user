@@ -24,4 +24,9 @@ public interface UserServiceFacade {
 	UserResponse login(UserAccountRequest request);
 
 	void logout(UserAccountRequest request);
+
+	UserResponse modifyUser(RegistrationRequest request);
+
+	void changePassword(UserAccountRequest request);
+
 }

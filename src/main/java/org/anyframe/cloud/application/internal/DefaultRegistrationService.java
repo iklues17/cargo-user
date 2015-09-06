@@ -6,12 +6,15 @@ import org.anyframe.cloud.application.CommonService;
 import org.anyframe.cloud.application.RegistrationService;
 import org.anyframe.cloud.application.exception.PasswordNotValid;
 import org.anyframe.cloud.domain.RegisteredUser;
-import org.anyframe.cloud.infrastructure.persistence.mongo.RegisteredUserMongoDbRepository;
+import org.anyframe.cloud.infrastructure.persistence.mongo.CompanyMongoDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DefaultRegistrationService extends CommonService implements RegistrationService {
+
+	@Autowired
+	protected CompanyMongoDbRepository companyRepository;
 
 	@Override
 	public String registerNewUser(RegisteredUser registeredUser) {
@@ -19,6 +22,8 @@ public class DefaultRegistrationService extends CommonService implements Registr
 		String random = UUID.randomUUID().toString().toUpperCase();
 		
 //		registeredUser.setUserId(new UserId(random.substring(0, random.indexOf("-"))));
+		
+		companyRepository.save(registeredUser.getCompany());
 		
 		registeredUserRepository.save(registeredUser);
 

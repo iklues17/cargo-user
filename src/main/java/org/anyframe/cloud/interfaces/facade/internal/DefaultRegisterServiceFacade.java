@@ -2,7 +2,6 @@ package org.anyframe.cloud.interfaces.facade.internal;
 
 import java.util.List;
 
-import org.anyframe.cloud.application.ApplicationEvents;
 import org.anyframe.cloud.application.LoginService;
 import org.anyframe.cloud.application.ManagementService;
 import org.anyframe.cloud.application.RegistrationService;
@@ -95,5 +94,24 @@ public class DefaultRegisterServiceFacade implements UserServiceFacade{
 
 		loginService.logout(new RegistrationDtoAssembler().fromDtoUserAccount(request));
 		
+	}
+
+	@Override
+	public UserResponse modifyUser(RegistrationRequest request) {
+		
+		RegisteredUser registeredUser = new RegistrationDtoAssembler().fromDto(null, request);
+	
+		managementService.modifyUser(registeredUser);
+	
+		
+		return new RegistrationDtoAssembler().toDto(registeredUser);
+	}
+
+	@Override
+	public void changePassword(UserAccountRequest request) {
+		
+		RegisteredUser registeredUser = new RegistrationDtoAssembler().fromDtoUserAccount(request);
+	
+		managementService.changePassword(registeredUser);
 	}
 }

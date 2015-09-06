@@ -16,4 +16,8 @@ public interface ManagementService {
 	RegisteredUser getUserById(String id);
 
 	List<RegisteredUser> getUserList();
+
+	void modifyUser(RegisteredUser registeredUser);
+
+	void changePassword(RegisteredUser registeredUser);
 }

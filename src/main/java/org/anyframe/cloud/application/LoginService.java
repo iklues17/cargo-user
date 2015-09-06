@@ -12,5 +12,5 @@ public interface LoginService {
 	RegisteredUser login(RegisteredUser userAccount);
 
 	void logout(RegisteredUser userAccount);
-
+	
 }
