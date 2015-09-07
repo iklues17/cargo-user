@@ -34,7 +34,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = {"/log-out"}, method = {RequestMethod.PUT})
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void logout(@RequestBody UserAccountRequest request){
 		
 		loginServiceFacade.logout(request);

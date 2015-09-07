@@ -16,7 +16,7 @@ import com.mongodb.MongoClient;
 public class MongoDbConfiguration extends AbstractMongoConfiguration {
 
 //    @Value("${spring.data.mongodb.host}")
-	private String mongoHost = "localhost";
+	private String mongoHost = "70.121.244.13";
 
 //    @Value("${spring.data.mongodb.port}")
 	private String mongoPort = "27017";
